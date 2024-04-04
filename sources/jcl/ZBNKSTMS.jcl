@@ -18,7 +18,14 @@
 //*
 //* ******************************************************************
 //  NOTIFY=MFIDEMO
-//EXTRACT  EXEC YBNKEXTV,REQUEST=B0004
+//EXTRACT  EXEC YBATTSO
+//TSO.SYSTSIN DD DSN=MFI01.MFIDEMO.CTLCARDS(KBNKTSO1),DISP=SHR 
+//SYSOUT   DD SYSOUT=*                                             
+//SYSPRINT DD SYSOUT=*                                             
+//EXTRACT  DD DSN=MFI01.MFIDEMO.BANKEXT1(+1),                      
+//            DISP=(NEW,CATLG,DELETE),                                   
+//            DCB=(RECFM=VB,LRECL=99,BLKSIZE=990),                     
+//            UNIT=SYSDA,SPACE=(TRK,(2,1),RLSE)  
 //*
 //SORT     EXEC YBNKSRT1,GEN='+1'
 //*
